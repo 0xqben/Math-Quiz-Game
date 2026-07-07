@@ -72,6 +72,19 @@ bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
 
+void PrintQuestionResult(stQuestion Question) {
+    if (IsRightAnswer(Question))
+    {
+        cout << "Right Answer ;-)" << endl;
+        //SetScreenColor(IsRightAnswer(Question));
+    }
+    else
+    {
+        cout << "Wrong Answer :-(" << endl;
+        //SetScreenColor(IsRightAnswer(Question));
+    }
+}
+
 stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOperationType OpType) {
     stQuestion Question;
     int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
