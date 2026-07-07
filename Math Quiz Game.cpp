@@ -11,7 +11,7 @@ enum enDifficulty
     Easy = 1,
     Medium =2,
     Hard = 3,
-    Mix = 4,
+    MixDifficulty = 4,
 };
 
 enum enOperationType
@@ -20,7 +20,7 @@ enum enOperationType
     Sub = 2,
     Mul = 3,
     Div = 4,
-    Mix = 5,
+    MixOp = 5,
 };
 
 struct stQuizz
@@ -39,6 +39,16 @@ struct stQuestion
     enOperationType OpType;
     int Answer;
 };
+
+int ReadNumberOfQuestions() {
+    int NumberOfQuestions = 1;
+    do
+    {
+        cout << "Enter Number Of Questions : " << endl;
+        cin >> NumberOfQuestions;
+    } while (NumberOfQuestions <= 0);
+    return NumberOfQuestions;
+}
 
 void StartGame() {
     char PlayAgain = 'y';
@@ -60,7 +70,7 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
-
+    
 
 }
 
