@@ -188,16 +188,16 @@ stQuizz FillGameResults(int NumberOfQuestions, int RightAnswers, int WrongAnswer
     return QuizResults;
 }
 
-stQuizz PlayGame(int NumberOfQuestions ,enOperationType OpType ,enDifficulty QuestionsDiffculty) {
+stQuizz PlayGame(stQuizz QuizInfo) {
     int RightAnswers = 0, WrongAnswers = 0;
     stQuestion Question;
-    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
+    for (int QuestionNumber = 1; QuestionNumber <= QuizInfo.NumberOfQuestions; QuestionNumber++)
     {
         
-        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
-        Question.OpType = OpType;
-        Question.QuestionLevel = QuestionsDiffculty;
-        Question = GenerateQuestion(OpType,QuestionsDiffculty);
+        cout << "\nQuestion [" << QuestionNumber << "/" << QuizInfo.NumberOfQuestions << "]" << endl;
+        Question.OpType = QuizInfo.OperationType;
+        Question.QuestionLevel = QuizInfo.QuestionsLevel;
+        Question = GenerateQuestion(QuizInfo.OperationType, QuizInfo.QuestionsLevel);
         Question.PlayerAnswer = ReadPlayerAnswer(Question);
 
         if (IsRightAnswer(Question))
@@ -207,16 +207,14 @@ stQuizz PlayGame(int NumberOfQuestions ,enOperationType OpType ,enDifficulty Que
             WrongAnswers++;
         PrintQuestionResult(Question);
     }
-    return FillGameResults(NumberOfQuestions,RightAnswers , WrongAnswers);
+    return FillGameResults(QuizInfo.NumberOfQuestions,RightAnswers , WrongAnswers);
 }
 
-stQuizz CreateQuiz() {
+stQuizz ReadQuizInfo() {
     stQuizz QuizInfo;
     QuizInfo.NumberOfQuestions = ReadNumberOfQuestions();
     QuizInfo.OperationType = ReadOperationType();
     QuizInfo.QuestionsLevel = ReadQuestionsLevel();
-
-    QuizInfo = PlayGame(QuizInfo.NumberOfQuestions, QuizInfo.OperationType, QuizInfo.QuestionsLevel);
     return QuizInfo;
        
 }
@@ -233,9 +231,8 @@ void StartGame() {
     {
         ResestScreen();
         stQuizz Quiz;
-        
-        
-        Quiz = CreateQuiz();
+        Quiz = ReadQuizInfo();
+        Quiz = PlayGame(Quiz);
         //ShowPassFailScreen();
         //ShowGameResult();
 
