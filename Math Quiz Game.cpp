@@ -86,14 +86,12 @@ enOperationType ReadOperationType() {
     return (enOperationType)OpType;
 }
 
-int ReadPlayerAnswer(stQuestion Question) {
+int ReadPlayerAnswer() {
     int Answer;
-    cout << Question.Number1 << endl;
-    cout << Question.Number2 << " " << OperationType(Question.OpType) << endl;
-    cout << "_______________" << endl;
     cin >> Answer;
     return Answer;
 }
+// Refactored
 
 void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
     
@@ -102,6 +100,7 @@ void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
     cout << OperationType(Quizz.QuestionList[QuestionNumber].OpType) << endl;
     cout << "_______________" << endl;
 }
+// New
 
 int RandomNumber(int From , int To) {
     int Random = rand() % (To - From + 1) + From;
@@ -202,10 +201,31 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
+void CorrectTheQuestionAnswer(stQuizz& Quizz, int QuestionNumber) {
+    if (Quizz.QuestionList[QuestionNumber].PlayerAnswer != Quizz.QuestionList[QuestionNumber].Answer)
+    {
+        Quizz.QuestionList[QuestionNumber].AnswerResult = false;
+        Quizz.WrongAnswers++;
+
+        cout << "\nWrong Answer :-(" << endl;
+        cout << "\nThe right answer is : " << Quizz.QuestionList[QuestionNumber].Answer << endl;
+    }
+    else
+    {
+        Quizz.QuestionList[QuestionNumber].AnswerResult = true;
+        Quizz.RightAnswers++;
+        cout << "\nRight Answer ;-)" << endl;
+    }
+    SetScreenColor(Quizz.QuestionList[QuestionNumber].AnswerResult);
+
+}
+
 void AskAndCorrectQuestionListAnswers(stQuizz& Quizz) {
     for (int QuestionNumber = 0; QuestionNumber < Quizz.NumberOfQuestions; QuestionNumber++)
     {
-
+        PrintTheQuestion(Quizz, QuestionNumber);
+        Quizz.QuestionList[QuestionNumber].PlayerAnswer = ReadPlayerAnswer();
+        CorrectTheQuestionAnswer()
     }
 
 
