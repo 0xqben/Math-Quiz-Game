@@ -158,26 +158,26 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
-//stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
-//    stQuestion Question;
-//    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
-//
-//    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
-//    {
-//        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
-//        GenerateQuestion(OpType,QuestionsDiffculty);
-//        Question.PlayerAnswer;// ReadPlayerAnswer(Question);
-//
-//        if (IsRightAnswer(Question))
-//            NumberOfRightAnswers++;
-//
-//        else
-//            NumberOfWrongAnswers++;
-//
-//
-//        PrintQuestionResult(Question);
-//    }
-//}
+stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
+    stQuestion Question;
+    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
+
+    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
+    {
+        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
+        GenerateQuestion(OpType,QuestionsDiffculty);
+        Question.PlayerAnswer = ReadPlayerAnswer(Question);
+
+        if (IsRightAnswer(Question))
+            NumberOfRightAnswers++;
+
+        else
+            NumberOfWrongAnswers++;
+
+
+        PrintQuestionResult(Question);
+    }
+}
 
 void ResestScreen() {
     system("cls");
@@ -210,16 +210,7 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
-    stQuestion qu;
 
-    qu = GenerateQuestion(enOperationType::MixOp ,enDifficulty::MixDifficulty);
-    cout << "generated question : " << qu.Number1 << endl;
-    cout << "generated question : " << qu.Number2 << endl;
-    cout << "generated question : " << OperationType(qu.OpType) << endl;
-    cout << "generated question : " << qu.Answer << endl;
-    cout << "generated question : " << QuestionLevel(qu.QuestionLevel) << endl;
-
-    cout << ReadPlayerAnswer(qu);
 
 }
 
