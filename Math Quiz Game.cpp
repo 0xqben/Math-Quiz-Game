@@ -66,6 +66,16 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
     }
 }
 
+enDifficulty ReadQuestionsLevel() {
+    int QuestionLevel = 1;
+    do
+    {
+        cout << "\nEnter Question Level [1] Easy , [2] Medium , [3] Hard , [4] Mix ? ";
+        cin >> QuestionLevel;
+    } while (QuestionLevel > 4 || QuestionLevel < 1);
+    return (enDifficulty)QuestionLevel;
+}
+
 void ResestScreen() {
     system("cls");
     system("color 0F");
@@ -81,11 +91,11 @@ void StartGame() {
         Quiz.NumberOfQuestions = ReadNumberOfQuestions();
         Quiz.OperationType;// = ReadOpertionType();
         Quiz.QuestionsLevel;// = ReadQuestionLevel();
-        // Might change them and move them to playgame func
+         Might change them and move them to playgame func
         
-        //PlayGame();
-        // ShowPassFailScreen();
-        // ShowGameResult();
+        PlayGame();
+         ShowPassFailScreen();
+         ShowGameResult();
 
         cout << "\nDo you want to play again ? Y / N : " << endl;
         cin >> PlayAgain;
@@ -98,7 +108,6 @@ int main()
 {
     srand((unsigned)time(NULL));
    
-    
 
 }
 
