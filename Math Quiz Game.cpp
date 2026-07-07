@@ -109,6 +109,16 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
     }
 }
 
+enDifficulty ReadQuestionsLevel() {
+    int QuestionLevel = 1;
+    do
+    {
+        cout << "\nEnter Question Level [1] Easy , [2] Medium , [3] Hard , [4] Mix ? ";
+        cin >> QuestionLevel;
+    } while (QuestionLevel > 4 || QuestionLevel < 1);
+    return (enDifficulty)QuestionLevel;
+}
+
 void ResestScreen() {
     system("cls");
     system("color 0F");
