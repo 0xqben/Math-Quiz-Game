@@ -145,6 +145,17 @@ bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
 
+void SetScreenColor(bool IsRight) {
+    if (IsRight)
+    {
+        system("color 2F");
+    }
+    else
+    {
+        system("color 4F");
+    }
+}
+
 void PrintQuestionResult(stQuestion Question) {
     if (IsRightAnswer(Question))
     {
