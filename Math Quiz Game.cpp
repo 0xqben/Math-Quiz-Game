@@ -55,6 +55,17 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOperationType OpType) {
+    stQuestion Question;
+    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
+
+    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
+    {
+        Question.QuestionLevel; // ReadQuestionLevel();
+        Question.OpType;// ReadQuestionOpType();
+    }
+}
+
 void ResestScreen() {
     system("cls");
     system("color 0F");
@@ -66,7 +77,13 @@ void StartGame() {
     do
     {
         ResestScreen();
-        stQuizz Quiz; //PlayGame(ReadNumberOfQuestions());
+        stQuizz Quiz;
+        Quiz.NumberOfQuestions = ReadNumberOfQuestions();
+        Quiz.OperationType;// = ReadOpertionType();
+        Quiz.QuestionsLevel;// = ReadQuestionLevel();
+        // Might change them and move them to playgame func
+        
+        //PlayGame();
         // ShowPassFailScreen();
         // ShowGameResult();
 
