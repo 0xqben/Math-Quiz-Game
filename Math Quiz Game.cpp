@@ -43,6 +43,16 @@ struct stQuestion
     int Number2;
 };
 
+string OperationType(enOperationType Type) {
+    string arrOpType[4] = { "Add","Sub","Mul","Div" };
+    return arrOpType[Type - 1];
+}
+
+string QuestionLevel(enDifficulty Level) {
+    string arrLevelType[3] = { "Easy","Medium","Hard" };
+    return arrLevelType[Level - 1];
+}
+
 int ReadNumberOfQuestions() {
     int NumberOfQuestions = 1;
     do
@@ -129,16 +139,6 @@ stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel)
 
 
     return GeneratedQuestion;
-}
-
-string OperationType(enOperationType Type) {
-    string arrOpType[4] = { "Add","Sub","Mul","Div" };
-    return arrOpType[Type - 1];
-}
-
-string QuestionLevel(enDifficulty Level) {
-    string arrLevelType[3] = { "Easy","Medium","Hard" };
-    return arrLevelType[Level - 1];
 }
 
 bool IsRightAnswer(stQuestion Question) {
