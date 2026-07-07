@@ -76,14 +76,54 @@ enDifficulty GetRandomDifficulty() {
     return (enDifficulty)RandomNumber(1, 3);
 }
 
-stQuestion GenerateQuestion(stQuestion& Question) {
-    if (Question.OpType == enOperationType::MixOp)
-        Question.OpType = GetRandomOperation();
+stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel) {
+    stQuestion GeneratedQuestion;
+    if (OpType == enOperationType::MixOp)
+        GeneratedQuestion.OpType = GetRandomOperation();
+    else
+        GeneratedQuestion.OpType = OpType;
 
-    if (Question.QuestionLevel == enDifficulty::MixDifficulty)
-        Question.QuestionLevel = GetRandomDifficulty();
+    if (QuestionLevel == enDifficulty::MixDifficulty)
+        GeneratedQuestion.QuestionLevel = GetRandomDifficulty();
+    else
+        GeneratedQuestion.QuestionLevel = QuestionLevel;
+
+    switch (GeneratedQuestion.QuestionLevel) {
+    case enDifficulty::Easy :
+        GeneratedQuestion.Number1 = RandomNumber(1, 10);;
+        GeneratedQuestion.Number2 = RandomNumber(1, 10);;
+        break;
+    case enDifficulty::Medium :
+        GeneratedQuestion.Number1 = RandomNumber(5, 20);
+        GeneratedQuestion.Number2 = RandomNumber(5, 20);
+        break;
+    case enDifficulty::Hard :
+        GeneratedQuestion.Number1 = RandomNumber(10, 100);
+        GeneratedQuestion.Number2 = RandomNumber(10, 100);
+        break;
+    default :
+        GeneratedQuestion.Number1 = -1;
+        break;
+    }
+
+    switch (GeneratedQuestion.OpType) {
+    case enOperationType::Add :
+        GeneratedQuestion.Answer = GeneratedQuestion.Number1 + GeneratedQuestion.Number2;
+        break;
+    case enOperationType::Sub :
+        GeneratedQuestion.Answer = GeneratedQuestion.Number1 - GeneratedQuestion.Number2;
+        break;
+    case enOperationType::Mul :
+        GeneratedQuestion.Answer = GeneratedQuestion.Number1 * GeneratedQuestion.Number2;
+        break;
+    case enOperationType::Div :
+        GeneratedQuestion.Answer = GeneratedQuestion.Number1 / GeneratedQuestion.Number2;
+        break;
+    }
 
 
+    return GeneratedQuestion;
+}
 
 
 }
