@@ -37,10 +37,10 @@ struct stQuestion
 {
     enDifficulty QuestionLevel;
     enOperationType OpType;
-    int Answer;
-    int PlayerAnswer;
-    int Number1;
-    int Number2;
+    int Answer = 0;
+    int PlayerAnswer = -1;
+    int Number1 = 0;
+    int Number2 = 0;
 };
 
 string OperationType(enOperationType Type) {
@@ -175,6 +175,7 @@ void PrintQuestionResult(stQuestion Question) {
     else
     {
         cout << "\nWrong Answer :-(" << endl;
+        cout << "\nThe right answer is : " << Question.Answer << endl;
         SetScreenColor(IsRightAnswer(Question));
     }
 }
@@ -202,7 +203,6 @@ stQuizz PlayGame(stQuizz QuizInfo) {
 
         if (IsRightAnswer(Question))
             RightAnswers++;
-
         else
             WrongAnswers++;
         PrintQuestionResult(Question);
