@@ -63,6 +63,15 @@ enDifficulty ReadQuestionsLevel() {
     return (enDifficulty)QuestionLevel;
 }
 
+int ReadPlayerAnswer(stQuestion Question) {
+    int Answer;
+    cout << Question.Number1 << endl;
+    cout << Question.Number2 << " " << OperationType(Question.OpType) << endl;
+    cout << "_______________" << endl;
+    cin >> Answer;
+    return Answer;
+}
+
 int RandomNumber(int From , int To) {
     int Random = rand() % (To - From + 1) + From;
     return Random;
@@ -100,9 +109,6 @@ stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel)
     case enDifficulty::Hard :
         GeneratedQuestion.Number1 = RandomNumber(10, 100);
         GeneratedQuestion.Number2 = RandomNumber(10, 100);
-        break;
-    default :
-        GeneratedQuestion.Number1 = -1;
         break;
     }
 
@@ -152,29 +158,26 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
-stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
-    stQuestion Question;
-    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
-
-    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
-    {
-        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
-
-        Question.QuestionLevel = QuestionsDiffculty;
-        Question.OpType = OpType;
-        GenerateQuestion(Question);
-        Question.PlayerAnswer;// ReadPlayerAnswer(Question);
-
-        if (IsRightAnswer(Question))
-            NumberOfRightAnswers++;
-
-        else
-            NumberOfWrongAnswers++;
-
-
-        PrintQuestionResult(Question);
-    }
-}
+//stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
+//    stQuestion Question;
+//    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
+//
+//    for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
+//    {
+//        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
+//        GenerateQuestion(OpType,QuestionsDiffculty);
+//        Question.PlayerAnswer;// ReadPlayerAnswer(Question);
+//
+//        if (IsRightAnswer(Question))
+//            NumberOfRightAnswers++;
+//
+//        else
+//            NumberOfWrongAnswers++;
+//
+//
+//        PrintQuestionResult(Question);
+//    }
+//}
 
 void ResestScreen() {
     system("cls");
@@ -215,6 +218,9 @@ int main()
     cout << "generated question : " << OperationType(qu.OpType) << endl;
     cout << "generated question : " << qu.Answer << endl;
     cout << "generated question : " << QuestionLevel(qu.QuestionLevel) << endl;
+
+    cout << ReadPlayerAnswer(qu);
+
 }
 
 
