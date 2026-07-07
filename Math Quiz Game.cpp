@@ -233,8 +233,8 @@ void StartGame() {
         stQuizz Quiz;
         Quiz = ReadQuizInfo();
         Quiz = PlayGame(Quiz);
-        //ShowPassFailScreen();
-        //ShowGameResult();
+        ShowPassFailScreen(Quiz);
+        ShowGameResult(Quiz);
 
         cout << "\nDo you want to play again ? Y / N : " << endl;
         cin >> PlayAgain;
