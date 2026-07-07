@@ -238,6 +238,7 @@ void ShowPassFailScreen(stQuizz Quiz) {
     cout << "\n--------------------------------\n";
 }
 
+
 void ShowGameResult(stQuizz Quiz) {
     cout << "Number of questions : " << Quiz.NumberOfQuestions << endl;
     cout << "Questions Level : " << QuestionLevel(Quiz.QuestionsLevel) << endl;
@@ -247,17 +248,24 @@ void ShowGameResult(stQuizz Quiz) {
     cout << "-----------------------------------\n";
 }
 
+void PlayMathGame() {
+    stQuizz Quiz;
+    Quiz.NumberOfQuestions = ReadNumberOfQuestions();
+    Quiz.QuestionsLevel = ReadQuestionsLevel();
+    Quiz.OperationType = ReadOperationType();
+
+    Quiz = PlayGame(Quiz);
+    ShowPassFailScreen(Quiz);
+    ShowGameResult(Quiz);
+}
+
 void StartGame() {
     char PlayAgain = 'y';
 
     do
     {
         ResestScreen();
-        stQuizz Quiz;
-        Quiz = ReadQuizInfo();
-        Quiz = PlayGame(Quiz);
-        ShowPassFailScreen(Quiz);
-        ShowGameResult(Quiz);
+        PlayMathGame();
 
         cout << "\nDo you want to play again ? Y / N : " << endl;
         cin >> PlayAgain;
