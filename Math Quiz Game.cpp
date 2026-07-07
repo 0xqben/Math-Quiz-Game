@@ -95,6 +95,14 @@ int ReadPlayerAnswer(stQuestion Question) {
     return Answer;
 }
 
+void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
+    
+    cout << Quizz.QuestionList[QuestionNumber].Number1 << endl;
+    cout << Quizz.QuestionList[QuestionNumber].Number2 << " ";
+    cout << OperationType(Quizz.QuestionList[QuestionNumber].OpType) << endl;
+    cout << "_______________" << endl;
+}
+
 int RandomNumber(int From , int To) {
     int Random = rand() % (To - From + 1) + From;
     return Random;
@@ -144,24 +152,27 @@ switch (QuestionLevel) {
         GeneratedQuestion.Number1 = RandomNumber(1, 10);;
         GeneratedQuestion.Number2 = RandomNumber(1, 10);;
 
-        GeneratedQuestion.Answer = 
-        break;
+        GeneratedQuestion.Answer = SimpleCalculator(GeneratedQuestion.Number1, GeneratedQuestion.Number2, GeneratedQuestion.OpType);
+        GeneratedQuestion.QuestionLevel = QuestionLevel;
+        return GeneratedQuestion;
     case enDifficulty::Medium :
-        GeneratedQuestion.Number1 = RandomNumber(5, 20);
-        GeneratedQuestion.Number2 = RandomNumber(5, 20);
-        break;
+        GeneratedQuestion.Number1 = RandomNumber(10, 50);;
+        GeneratedQuestion.Number2 = RandomNumber(10, 50);;
+
+        GeneratedQuestion.Answer = SimpleCalculator(GeneratedQuestion.Number1, GeneratedQuestion.Number2, GeneratedQuestion.OpType);
+        GeneratedQuestion.QuestionLevel = QuestionLevel;
+        return GeneratedQuestion;
     case enDifficulty::Hard :
-        GeneratedQuestion.Number1 = RandomNumber(10, 100);
-        GeneratedQuestion.Number2 = RandomNumber(10, 100);
-        break;
+        GeneratedQuestion.Number1 = RandomNumber(10, 100);;
+        GeneratedQuestion.Number2 = RandomNumber(10, 100);;
+
+        GeneratedQuestion.Answer = SimpleCalculator(GeneratedQuestion.Number1, GeneratedQuestion.Number2, GeneratedQuestion.OpType);
+        GeneratedQuestion.QuestionLevel = QuestionLevel;
+        return GeneratedQuestion;
     }
-
-    
-
-
     return GeneratedQuestion;
 }
-
+// Refactored
 bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
@@ -189,6 +200,17 @@ void PrintQuestionResult(stQuestion Question) {
         cout << "\nThe right answer is : " << Question.Answer << endl;
         SetScreenColor(IsRightAnswer(Question));
     }
+}
+
+void AskAndCorrectQuestionListAnswers(stQuizz& Quizz) {
+    for (int QuestionNumber = 0; QuestionNumber < Quizz.NumberOfQuestions; QuestionNumber++)
+    {
+
+    }
+
+
+
+
 }
 
 stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
