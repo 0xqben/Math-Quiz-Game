@@ -210,6 +210,17 @@ stQuizz PlayGame(int NumberOfQuestions ,enOperationType OpType ,enDifficulty Que
     return FillGameResults(NumberOfQuestions,RightAnswers , WrongAnswers);
 }
 
+stQuizz CreateQuiz() {
+    stQuizz QuizInfo;
+    QuizInfo.NumberOfQuestions = ReadNumberOfQuestions();
+    QuizInfo.OperationType = ReadOperationType();
+    QuizInfo.QuestionsLevel = ReadQuestionsLevel();
+
+    QuizInfo = PlayGame(QuizInfo.NumberOfQuestions, QuizInfo.OperationType, QuizInfo.QuestionsLevel);
+    return QuizInfo;
+       
+}
+
 void ResestScreen() {
     system("cls");
     system("color 0F");
@@ -224,7 +235,7 @@ void StartGame() {
         stQuizz Quiz;
         
         
-        Quiz; // CreateQuiz();
+        Quiz = CreateQuiz();
         //ShowPassFailScreen();
         //ShowGameResult();
 
