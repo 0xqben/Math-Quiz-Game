@@ -23,6 +23,17 @@ enum enOperationType
     MixOp = 5,
 };
 
+struct stQuestion
+{
+    enDifficulty QuestionLevel;
+    enOperationType OpType;
+    int Answer = 0;
+    int PlayerAnswer = 0;
+    int Number1 = 0;
+    int Number2 = 0;
+    bool AnswerResult = false;
+};
+
 struct stQuizz
 {
     stQuestion QuestionList[100];
@@ -33,17 +44,6 @@ struct stQuizz
     enDifficulty QuestionsLevel;
     bool isPass = false;
 
-};
-
-struct stQuestion
-{
-    enDifficulty QuestionLevel;
-    enOperationType OpType;
-    int Answer = 0;
-    int PlayerAnswer = 0;
-    int Number1 = 0;
-    int Number2 = 0;
-    bool AnswerResult = false;
 };
 
 string OperationType(enOperationType Type) {
@@ -91,7 +91,7 @@ int ReadPlayerAnswer() {
     cin >> Answer;
     return Answer;
 }
-// Refactored
+//Refactored
 
 void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
     
@@ -225,14 +225,12 @@ void AskAndCorrectQuestionListAnswers(stQuizz& Quizz) {
     {
         PrintTheQuestion(Quizz, QuestionNumber);
         Quizz.QuestionList[QuestionNumber].PlayerAnswer = ReadPlayerAnswer();
-        CorrectTheQuestionAnswer()
+        CorrectTheQuestionAnswer(Quizz, QuestionNumber);
     }
 
-
-
-
+    Quizz.isPass = (Quizz.RightAnswers >= Quizz.WrongAnswers);
 }
-
+// New 
 stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
     stQuizz QuizResults;
 
@@ -260,7 +258,7 @@ stQuizz PlayGame(stQuizz QuizInfo) {
         
         cout << "\nQuestion [" << QuestionNumber << "/" << QuizInfo.NumberOfQuestions << "]" << endl;
         Question = GenerateQuestion(QuizInfo.OperationType, QuizInfo.QuestionsLevel);
-        Question.PlayerAnswer = ReadPlayerAnswer(Question);
+        //Question.PlayerAnswer = ReadPlayerAnswer(Question);
 
         if (IsRightAnswer(Question))
             RightAnswers++;
@@ -285,9 +283,9 @@ void ResestScreen() {
     system("color 0F");
 }
 
-void ShowPassFailScreen(stQuizz Quiz) {
+void ShowPassFailScreen(bool IsPass) {
     cout << "\n--------------------------------\n";
-    if (Quiz.RightAnswers > Quiz.WrongAnswers)
+    if (IsPass)
     {
         cout << " Final Results is PASS :-)";
     }
@@ -299,7 +297,6 @@ void ShowPassFailScreen(stQuizz Quiz) {
 }
 
 
-
 void ShowGameResult(stQuizz Quiz) {
     cout << "Number of questions : " << Quiz.NumberOfQuestions << endl;
     cout << "Questions Level : " << QuestionLevel(Quiz.QuestionsLevel) << endl;
@@ -307,6 +304,12 @@ void ShowGameResult(stQuizz Quiz) {
     cout << "Number of right answers : " << Quiz.RightAnswers << endl;
     cout << "Number of wrong answers : " << Quiz.WrongAnswers << endl;
     cout << "-----------------------------------\n";
+}
+ 
+void PrintQuizResults(stQuizz Quiz) {
+    ShowPassFailScreen(Quiz.isPass);
+    ShowGameResult(Quiz);
+
 }
 
 void PlayMathGame() {
@@ -316,12 +319,13 @@ void PlayMathGame() {
     Quiz.OperationType = ReadOperationType();
 
 
-
-    Quiz = PlayGame(Quiz);
-    ShowPassFailScreen(Quiz);
-    ShowGameResult(Quiz);
+    GenerateQuizzQuestions(Quiz);
+    AskAndCorrectQuestionListAnswers(Quiz);
+    PrintQuizResults(Quiz);
 }
 // New
+
+
 void StartGame() {
     char PlayAgain = 'y';
 
