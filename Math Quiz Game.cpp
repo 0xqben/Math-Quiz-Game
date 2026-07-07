@@ -159,14 +159,25 @@ void SetScreenColor(bool IsRight) {
 void PrintQuestionResult(stQuestion Question) {
     if (IsRightAnswer(Question))
     {
-        cout << "Right Answer ;-)" << endl;
-        //SetScreenColor(IsRightAnswer(Question));
+        cout << "\nRight Answer ;-)" << endl;
+        SetScreenColor(IsRightAnswer(Question));
     }
     else
     {
-        cout << "Wrong Answer :-(" << endl;
-        //SetScreenColor(IsRightAnswer(Question));
+        cout << "\nWrong Answer :-(" << endl;
+        SetScreenColor(IsRightAnswer(Question));
     }
+}
+
+stQuizz FillGameResults(int NumberOfQuestions, stQuestion QuestionResults , int RightAnswers, int WrongAnswers) {
+    stQuizz QuizResults;
+    QuizResults.NumberOfQuestions = NumberOfQuestions;
+    QuizResults.QuestionsLevel = QuestionResults.QuestionLevel;
+    QuizResults.OperationType = QuestionResults.OpType;
+    QuizResults.RightAnswers = RightAnswers;
+    QuizResults.WrongAnswers = WrongAnswers;
+
+    return QuizResults;
 }
 
 stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
@@ -188,6 +199,8 @@ stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOpera
 
         PrintQuestionResult(Question);
     }
+
+    return; // FillGameResults();
 }
 
 void ResestScreen() {
