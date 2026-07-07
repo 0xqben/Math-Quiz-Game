@@ -50,6 +50,11 @@ int ReadNumberOfQuestions() {
     return NumberOfQuestions;
 }
 
+int RandomNumber(int From , int To) {
+    int Random = rand() % (To - From + 1) + From;
+    return Random;
+}
+
 void StartGame() {
     char PlayAgain = 'y';
 
@@ -70,6 +75,7 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
+  
     
 
 }
