@@ -25,11 +25,13 @@ enum enOperationType
 
 struct stQuizz
 {
+    stQuestion QuestionList[100];
     int NumberOfQuestions = 0;
     int RightAnswers = 0;
     int WrongAnswers = 0;
     enOperationType OperationType;
     enDifficulty QuestionsLevel;
+    bool isPass = false;
 
 };
 
