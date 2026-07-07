@@ -73,6 +73,16 @@ enDifficulty ReadQuestionsLevel() {
     return (enDifficulty)QuestionLevel;
 }
 
+enOperationType ReadOperationType() {
+    int OpType = 1;
+    do
+    {
+        cout << "\nEnter Question Level [1] Add , [2] Sub , [3] Mul , [4] Div , [5] Mix ? ";
+        cin >> OpType;
+    } while (OpType > 5 || OpType < 1);
+    return (enOperationType)OpType;
+}
+
 int ReadPlayerAnswer(stQuestion Question) {
     int Answer;
     cout << Question.Number1 << endl;
