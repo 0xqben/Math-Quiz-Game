@@ -100,6 +100,21 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+int SimpleCalculator(int Number1, int Number2, enOperationType OpType) {
+    switch (OpType) {
+    case enOperationType::Add:
+        return Number1 + Number2;
+    case enOperationType::Sub:
+        return Number1 - Number2;
+    case enOperationType::Mul:
+        return Number1 * Number2;
+    case enOperationType::Div:
+        return Number1 / Number2;
+    default :
+        return Number1 + Number2;
+    }
+}
+
 enOperationType GetRandomOperation() {
     return (enOperationType)RandomNumber(1, 4);
 }
@@ -141,20 +156,7 @@ switch (QuestionLevel) {
         break;
     }
 
-    switch (GeneratedQuestion.OpType) {
-    case enOperationType::Add :
-        GeneratedQuestion.Answer = GeneratedQuestion.Number1 + GeneratedQuestion.Number2;
-        break;
-    case enOperationType::Sub :
-        GeneratedQuestion.Answer = GeneratedQuestion.Number1 - GeneratedQuestion.Number2;
-        break;
-    case enOperationType::Mul :
-        GeneratedQuestion.Answer = GeneratedQuestion.Number1 * GeneratedQuestion.Number2;
-        break;
-    case enOperationType::Div :
-        GeneratedQuestion.Answer = GeneratedQuestion.Number1 / GeneratedQuestion.Number2;
-        break;
-    }
+    
 
 
     return GeneratedQuestion;
