@@ -185,20 +185,6 @@ void SetScreenColor(bool IsRight) {
     }
 }
 // Not Changed
-void PrintQuestionResult(stQuestion Question) {
-    if (IsRightAnswer(Question))
-    {
-        cout << "\nRight Answer ;-)" << endl;
-        SetScreenColor(IsRightAnswer(Question));
-    }
-    else
-    {
-        cout << "\nWrong Answer :-(" << endl;
-        cout << "\nThe right answer is : " << Question.Answer << endl;
-        SetScreenColor(IsRightAnswer(Question));
-    }
-}
-// To Be Removed
 void CorrectTheQuestionAnswer(stQuizz& Quizz, int QuestionNumber) {
     if (Quizz.QuestionList[QuestionNumber].PlayerAnswer != Quizz.QuestionList[QuestionNumber].Answer)
     {
@@ -229,18 +215,6 @@ void AskAndCorrectQuestionListAnswers(stQuizz& Quizz) {
     Quizz.isPass = (Quizz.RightAnswers >= Quizz.WrongAnswers);
 }
 // New 
-stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
-    stQuizz QuizResults;
-
-    QuizResults.NumberOfQuestions = QuizInfo.NumberOfQuestions;
-    QuizResults.OperationType = QuizInfo.OperationType;
-    QuizResults.QuestionsLevel = QuizInfo.QuestionsLevel;
-    QuizResults.RightAnswers = RightAnswers;
-    QuizResults.WrongAnswers = WrongAnswers;
-
-    return QuizResults;
-}
-// To Be Removed
 void GenerateQuizzQuestions(stQuizz& Quizz) {
     for (int Question = 0; Question < Quizz.NumberOfQuestions; Question++)
     {
@@ -248,34 +222,6 @@ void GenerateQuizzQuestions(stQuizz& Quizz) {
     }
 }
 // New 
-stQuizz PlayGame(stQuizz QuizInfo) {
-    int RightAnswers = 0, WrongAnswers = 0;
-    stQuestion Question;
-    for (int QuestionNumber = 1; QuestionNumber <= QuizInfo.NumberOfQuestions; QuestionNumber++)
-    {
-        
-        cout << "\nQuestion [" << QuestionNumber << "/" << QuizInfo.NumberOfQuestions << "]" << endl;
-        Question = GenerateQuestion(QuizInfo.OperationType, QuizInfo.QuestionsLevel);
-        //Question.PlayerAnswer = ReadPlayerAnswer(Question);
-
-        if (IsRightAnswer(Question))
-            RightAnswers++;
-        else
-            WrongAnswers++;
-        PrintQuestionResult(Question);
-    }
-    return FillGameResults(QuizInfo,RightAnswers , WrongAnswers);
-}
-// To Be Removed
-stQuizz ReadQuizInfo() {
-    stQuizz QuizInfo;
-    QuizInfo.NumberOfQuestions = ReadNumberOfQuestions();
-    QuizInfo.OperationType = ReadOperationType();
-    QuizInfo.QuestionsLevel = ReadQuestionsLevel();
-    return QuizInfo;
-       
-}
-// To Be Removed
 void ResestScreen() {
     system("cls");
     system("color 0F");
