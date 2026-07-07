@@ -13,7 +13,7 @@ enum enDifficulty
     Hard = 3,
     MixDifficulty = 4,
 };
-
+// Not Changed
 enum enOperationType
 {
     Add = 1,
@@ -22,7 +22,7 @@ enum enOperationType
     Div = 4,
     MixOp = 5,
 };
-
+// Not Changed
 struct stQuestion
 {
     enDifficulty QuestionLevel;
@@ -33,7 +33,7 @@ struct stQuestion
     int Number2 = 0;
     bool AnswerResult = false;
 };
-
+// Refactored
 struct stQuizz
 {
     stQuestion QuestionList[100];
@@ -45,17 +45,17 @@ struct stQuizz
     bool isPass = false;
 
 };
-
+// Refactored
 string OperationType(enOperationType Type) {
     string arrOpType[5] = { "Add","Sub","Mul","Div", "Mix"};
     return arrOpType[Type - 1];
 }
-
+// Not Changed
 string QuestionLevel(enDifficulty Level) {
     string arrLevelType[4] = { "Easy","Medium","Hard", "Mix"};
     return arrLevelType[Level - 1];
 }
-
+// Not Changed
 int ReadNumberOfQuestions() {
     int NumberOfQuestions = 1;
     do
@@ -65,7 +65,7 @@ int ReadNumberOfQuestions() {
     } while (NumberOfQuestions <= 0);
     return NumberOfQuestions;
 }
-
+// Not Changed
 enDifficulty ReadQuestionsLevel() {
     int QuestionLevel = 1;
     do
@@ -75,7 +75,7 @@ enDifficulty ReadQuestionsLevel() {
     } while (QuestionLevel > 4 || QuestionLevel < 1);
     return (enDifficulty)QuestionLevel;
 }
-
+// Not Changed
 enOperationType ReadOperationType() {
     int OpType = 1;
     do
@@ -85,14 +85,13 @@ enOperationType ReadOperationType() {
     } while (OpType > 5 || OpType < 1);
     return (enOperationType)OpType;
 }
-
+// Not Changed
 int ReadPlayerAnswer() {
     int Answer;
     cin >> Answer;
     return Answer;
 }
 //Refactored
-
 void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
     
     cout << Quizz.QuestionList[QuestionNumber].Number1 << endl;
@@ -101,12 +100,11 @@ void PrintTheQuestion(stQuizz& Quizz, int QuestionNumber) {
     cout << "_______________" << endl;
 }
 // New
-
 int RandomNumber(int From , int To) {
     int Random = rand() % (To - From + 1) + From;
     return Random;
 }
-
+// Not Changed
 int SimpleCalculator(int Number1, int Number2, enOperationType OpType) {
     switch (OpType) {
     case enOperationType::Add:
@@ -121,15 +119,15 @@ int SimpleCalculator(int Number1, int Number2, enOperationType OpType) {
         return Number1 + Number2;
     }
 }
-
+// New
 enOperationType GetRandomOperation() {
     return (enOperationType)RandomNumber(1, 4);
 }
-
+// Not Changed
 enDifficulty GetRandomDifficulty() {
     return (enDifficulty)RandomNumber(1, 3);
 }
-
+// Not Changed
 stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel) {
     stQuestion GeneratedQuestion;
     
@@ -175,7 +173,7 @@ switch (QuestionLevel) {
 bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
-
+// Not Changed
 void SetScreenColor(bool IsRight) {
     if (IsRight)
     {
@@ -186,7 +184,7 @@ void SetScreenColor(bool IsRight) {
         system("color 4F");
     }
 }
-
+// Not Changed
 void PrintQuestionResult(stQuestion Question) {
     if (IsRightAnswer(Question))
     {
@@ -200,7 +198,7 @@ void PrintQuestionResult(stQuestion Question) {
         SetScreenColor(IsRightAnswer(Question));
     }
 }
-
+// To Be Removed
 void CorrectTheQuestionAnswer(stQuizz& Quizz, int QuestionNumber) {
     if (Quizz.QuestionList[QuestionNumber].PlayerAnswer != Quizz.QuestionList[QuestionNumber].Answer)
     {
@@ -219,7 +217,7 @@ void CorrectTheQuestionAnswer(stQuizz& Quizz, int QuestionNumber) {
     SetScreenColor(Quizz.QuestionList[QuestionNumber].AnswerResult);
 
 }
-
+// New
 void AskAndCorrectQuestionListAnswers(stQuizz& Quizz) {
     for (int QuestionNumber = 0; QuestionNumber < Quizz.NumberOfQuestions; QuestionNumber++)
     {
@@ -242,7 +240,7 @@ stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
 
     return QuizResults;
 }
-
+// To Be Removed
 void GenerateQuizzQuestions(stQuizz& Quizz) {
     for (int Question = 0; Question < Quizz.NumberOfQuestions; Question++)
     {
@@ -268,7 +266,7 @@ stQuizz PlayGame(stQuizz QuizInfo) {
     }
     return FillGameResults(QuizInfo,RightAnswers , WrongAnswers);
 }
-
+// To Be Removed
 stQuizz ReadQuizInfo() {
     stQuizz QuizInfo;
     QuizInfo.NumberOfQuestions = ReadNumberOfQuestions();
@@ -277,12 +275,12 @@ stQuizz ReadQuizInfo() {
     return QuizInfo;
        
 }
-
+// To Be Removed
 void ResestScreen() {
     system("cls");
     system("color 0F");
 }
-
+// Not Changed
 void ShowPassFailScreen(bool IsPass) {
     cout << "\n--------------------------------\n";
     if (IsPass)
@@ -295,8 +293,7 @@ void ShowPassFailScreen(bool IsPass) {
     }
     cout << "\n--------------------------------\n";
 }
-
-
+// Refactored
 void ShowGameResult(stQuizz Quiz) {
     cout << "Number of questions : " << Quiz.NumberOfQuestions << endl;
     cout << "Questions Level : " << QuestionLevel(Quiz.QuestionsLevel) << endl;
@@ -305,13 +302,12 @@ void ShowGameResult(stQuizz Quiz) {
     cout << "Number of wrong answers : " << Quiz.WrongAnswers << endl;
     cout << "-----------------------------------\n";
 }
- 
+// Refactored
 void PrintQuizResults(stQuizz Quiz) {
     ShowPassFailScreen(Quiz.isPass);
     ShowGameResult(Quiz);
-
 }
-
+// New
 void PlayMathGame() {
     stQuizz Quiz;
     Quiz.NumberOfQuestions = ReadNumberOfQuestions();
@@ -324,8 +320,6 @@ void PlayMathGame() {
     PrintQuizResults(Quiz);
 }
 // New
-
-
 void StartGame() {
     char PlayAgain = 'y';
 
