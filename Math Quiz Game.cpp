@@ -110,20 +110,26 @@ enDifficulty GetRandomDifficulty() {
 
 stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel) {
     stQuestion GeneratedQuestion;
-    if (OpType == enOperationType::MixOp)
-        GeneratedQuestion.OpType = GetRandomOperation();
-    else
-        GeneratedQuestion.OpType = OpType;
-
+    
     if (QuestionLevel == enDifficulty::MixDifficulty)
-        GeneratedQuestion.QuestionLevel = GetRandomDifficulty();
-    else
-        GeneratedQuestion.QuestionLevel = QuestionLevel;
+        QuestionLevel = GetRandomDifficulty();
 
-    switch (GeneratedQuestion.QuestionLevel) {
+    GeneratedQuestion.QuestionLevel = QuestionLevel;
+
+    
+
+    if (OpType == enOperationType::MixOp)
+        OpType = GetRandomOperation();
+
+
+    GeneratedQuestion.OpType = OpType;
+    
+switch (QuestionLevel) {
     case enDifficulty::Easy :
         GeneratedQuestion.Number1 = RandomNumber(1, 10);;
         GeneratedQuestion.Number2 = RandomNumber(1, 10);;
+
+        GeneratedQuestion.Answer = 
         break;
     case enDifficulty::Medium :
         GeneratedQuestion.Number1 = RandomNumber(5, 20);
@@ -201,7 +207,7 @@ void GenerateQuizzQuestions(stQuizz& Quizz) {
         Quizz.QuestionList[Question] = GenerateQuestion(Quizz.OperationType, Quizz.QuestionsLevel);
     }
 }
-
+// New 
 stQuizz PlayGame(stQuizz QuizInfo) {
     int RightAnswers = 0, WrongAnswers = 0;
     stQuestion Question;
