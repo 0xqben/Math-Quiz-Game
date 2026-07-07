@@ -55,12 +55,17 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+void ResestScreen() {
+    system("cls");
+    system("color 0F");
+}
+
 void StartGame() {
     char PlayAgain = 'y';
 
     do
     {
-        // ResestScreen();
+        ResestScreen();
         stQuizz Quiz; //PlayGame(ReadNumberOfQuestions());
         // ShowPassFailScreen();
         // ShowGameResult();
@@ -75,7 +80,7 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
-  
+   
     
 
 }
