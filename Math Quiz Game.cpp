@@ -68,6 +68,10 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+enOperationType GetRandomOperation() {
+    return (enOperationType)RandomNumber(1, 4);
+}
+
 stQuestion GenerateQuestion(stQuestion& Question) {
     if (Question.OpType == enOperationType::MixOp)
         Question.OpType = GetRandomOperation();
