@@ -4,6 +4,7 @@
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
+using namespace std;
 
 enum enDifficulty
 {
@@ -22,12 +23,38 @@ enum enOperationType
     Mix = 5,
 };
 
+struct stQuizz
+{
+    int NumberOfQuestions = 0;
+    int RightAnswers = 0;
+    int WrongAnswers = 0;
+    enOperationType OperationType;
+    enDifficulty QuestionLevel;
 
-using namespace std;
+};
+
+void StartGame() {
+    char PlayAgain = 'y';
+
+    do
+    {
+        // ResestScreen();
+        stQuizz Quiz; //PlayGame(ReadNumberOfQuestions());
+        // ShowPassFailScreen();
+        // ShowGameResult();
+
+        cout << "\nDo you want to play again ? Y / N : " << endl;
+        cin >> PlayAgain;
+
+
+    } while (PlayAgain == 'y' || PlayAgain == 'Y');
+}
 
 int main()
 {
-    
+    srand((unsigned)time(NULL));
+
+
 }
 
 
