@@ -72,6 +72,10 @@ enOperationType GetRandomOperation() {
     return (enOperationType)RandomNumber(1, 4);
 }
 
+enDifficulty GetRandomDifficulty() {
+    return (enDifficulty)RandomNumber(1, 3);
+}
+
 stQuestion GenerateQuestion(stQuestion& Question) {
     if (Question.OpType == enOperationType::MixOp)
         Question.OpType = GetRandomOperation();
