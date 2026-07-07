@@ -130,6 +130,11 @@ string OperationType(enOperationType Type) {
     return arrOpType[Type - 1];
 }
 
+string QuestionLevel(enDifficulty Level) {
+    string arrLevelType[3] = { "Easy","Medium","Hard" };
+    return arrLevelType[Level - 1];
+}
+
 bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
