@@ -44,12 +44,12 @@ struct stQuestion
 };
 
 string OperationType(enOperationType Type) {
-    string arrOpType[4] = { "Add","Sub","Mul","Div" };
+    string arrOpType[5] = { "Add","Sub","Mul","Div", "Mix"};
     return arrOpType[Type - 1];
 }
 
 string QuestionLevel(enDifficulty Level) {
-    string arrLevelType[3] = { "Easy","Medium","Hard" };
+    string arrLevelType[4] = { "Easy","Medium","Hard", "Mix"};
     return arrLevelType[Level - 1];
 }
 
@@ -180,9 +180,12 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
-stQuizz FillGameResults(int NumberOfQuestions, int RightAnswers, int WrongAnswers) {
+stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
     stQuizz QuizResults;
-    QuizResults.NumberOfQuestions = NumberOfQuestions;
+
+    QuizResults.NumberOfQuestions = QuizInfo.NumberOfQuestions;
+    QuizResults.OperationType = QuizInfo.OperationType;
+    QuizResults.QuestionsLevel = QuizInfo.QuestionsLevel;
     QuizResults.RightAnswers = RightAnswers;
     QuizResults.WrongAnswers = WrongAnswers;
 
@@ -196,8 +199,6 @@ stQuizz PlayGame(stQuizz QuizInfo) {
     {
         
         cout << "\nQuestion [" << QuestionNumber << "/" << QuizInfo.NumberOfQuestions << "]" << endl;
-        Question.OpType = QuizInfo.OperationType;
-        Question.QuestionLevel = QuizInfo.QuestionsLevel;
         Question = GenerateQuestion(QuizInfo.OperationType, QuizInfo.QuestionsLevel);
         Question.PlayerAnswer = ReadPlayerAnswer(Question);
 
@@ -207,7 +208,7 @@ stQuizz PlayGame(stQuizz QuizInfo) {
             WrongAnswers++;
         PrintQuestionResult(Question);
     }
-    return FillGameResults(QuizInfo.NumberOfQuestions,RightAnswers , WrongAnswers);
+    return FillGameResults(QuizInfo,RightAnswers , WrongAnswers);
 }
 
 stQuizz ReadQuizInfo() {
