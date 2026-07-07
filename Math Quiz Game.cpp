@@ -39,7 +39,6 @@ struct stQuestion
     enOperationType OpType;
     int Answer;
     int PlayerAnswer;
-    bool IsRight;
     int Number1;
     int Number2;
 };
@@ -69,6 +68,10 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+bool IsRightAnswer(stQuestion Question) {
+    return (Question.Answer == Question.PlayerAnswer);
+}
+
 stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOperationType OpType) {
     stQuestion Question;
     int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
@@ -82,12 +85,12 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
         Question.Answer;// GenerateQuestion(Question);
         Question.PlayerAnswer;// ReadPlayerAnswer(Question);
 
-        if (Question.Answer == Question.PlayerAnswer)
+        if (IsRightAnswer(Question))
             NumberOfRightAnswers++;
-            Question.IsRight = true;
+            
         else
             NumberOfWrongAnswers++;
-            Question.IsRight = false;
+            
 
         PrintQuestionResult(Question);
     }
