@@ -68,6 +68,18 @@ int RandomNumber(int From , int To) {
     return Random;
 }
 
+stQuestion GenerateQuestion(stQuestion& Question) {
+    if (Question.OpType == enOperationType::MixOp)
+        Question.OpType = GetRandomOperation();
+
+    if (Question.QuestionLevel == enDifficulty::MixDifficulty)
+        Question.QuestionLevel = GetRandomDifficulty();
+
+
+
+
+}
+
 bool IsRightAnswer(stQuestion Question) {
     return (Question.Answer == Question.PlayerAnswer);
 }
@@ -95,7 +107,7 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
 
         Question.QuestionLevel = QuestionsDiffculty;
         Question.OpType = OpType;
-        Question.Answer;// GenerateQuestion(Question);
+        GenerateQuestion(Question);
         Question.PlayerAnswer;// ReadPlayerAnswer(Question);
 
         if (IsRightAnswer(Question))
