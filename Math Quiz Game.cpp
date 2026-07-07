@@ -38,6 +38,10 @@ struct stQuestion
     enDifficulty QuestionLevel;
     enOperationType OpType;
     int Answer;
+    int PlayerAnswer;
+    bool IsRight;
+    int Number1;
+    int Number2;
 };
 
 int ReadNumberOfQuestions() {
@@ -71,8 +75,21 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
 
     for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
     {
-        Question.QuestionLevel; // ReadQuestionLevel();
-        Question.OpType;// ReadQuestionOpType();
+        cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
+
+        Question.QuestionLevel = QuestionsDiffculty;
+        Question.OpType = OpType;
+        Question.Answer;// GenerateQuestion(Question);
+        Question.PlayerAnswer;// ReadPlayerAnswer(Question);
+
+        if (Question.Answer == Question.PlayerAnswer)
+            NumberOfRightAnswers++;
+            Question.IsRight = true;
+        else
+            NumberOfWrongAnswers++;
+            Question.IsRight = false;
+
+        PrintQuestionResult(Question);
     }
 }
 
