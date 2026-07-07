@@ -13,7 +13,14 @@ enum enDifficulty
     Mix = 4,
 };
 
-
+enum enOperationType
+{
+    Add = 1,
+    Sub = 2,
+    Mul = 3,
+    Div = 4,
+    Mix = 5,
+};
 
 
 using namespace std;
