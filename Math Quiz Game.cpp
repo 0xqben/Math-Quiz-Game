@@ -125,7 +125,9 @@ stQuestion GenerateQuestion(enOperationType OpType , enDifficulty QuestionLevel)
     return GeneratedQuestion;
 }
 
-
+string OperationType(enOperationType Type) {
+    string arrOpType[4] = { "Add","Sub","Mul","Div" };
+    return arrOpType[Type - 1];
 }
 
 bool IsRightAnswer(stQuestion Question) {
@@ -145,7 +147,7 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
-stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOperationType OpType) {
+stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
     stQuestion Question;
     int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
 
@@ -160,23 +162,13 @@ stQuizz PlayGame(int NumberOfQuestions , enDifficulty QuestionsDiffculty,enOpera
 
         if (IsRightAnswer(Question))
             NumberOfRightAnswers++;
-            
+
         else
             NumberOfWrongAnswers++;
-            
+
 
         PrintQuestionResult(Question);
     }
-}
-
-enDifficulty ReadQuestionsLevel() {
-    int QuestionLevel = 1;
-    do
-    {
-        cout << "\nEnter Question Level [1] Easy , [2] Medium , [3] Hard , [4] Mix ? ";
-        cin >> QuestionLevel;
-    } while (QuestionLevel > 4 || QuestionLevel < 1);
-    return (enDifficulty)QuestionLevel;
 }
 
 void ResestScreen() {
@@ -210,8 +202,14 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
-   
+    stQuestion qu;
 
+    qu = GenerateQuestion(enOperationType::MixOp ,enDifficulty::MixDifficulty);
+    cout << "generated question : " << qu.Number1 << endl;
+    cout << "generated question : " << qu.Number2 << endl;
+    cout << "generated question : " << OperationType(qu.OpType) << endl;
+    cout << "generated question : " << qu.Answer << endl;
+    cout << "generated question : " << QuestionLevel(qu.QuestionLevel) << endl;
 }
 
 
