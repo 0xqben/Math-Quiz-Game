@@ -224,6 +224,28 @@ void ResestScreen() {
     system("color 0F");
 }
 
+void ShowPassFailScreen(stQuizz Quiz) {
+    cout << "\n--------------------------------\n";
+    if (Quiz.RightAnswers > Quiz.WrongAnswers)
+    {
+        cout << " Final Results is PASS :-)";
+    }
+    else
+    {
+        cout << " Final Results is FAIL :-(";
+    }
+    cout << "\n--------------------------------\n";
+}
+
+void ShowGameResult(stQuizz Quiz) {
+    cout << "Number of questions : " << Quiz.NumberOfQuestions << endl;
+    cout << "Questions Level : " << QuestionLevel(Quiz.QuestionsLevel) << endl;
+    cout << "operation Type : " << OperationType(Quiz.OperationType) << endl;
+    cout << "Number of right answers : " << Quiz.RightAnswers << endl;
+    cout << "Number of wrong answers : " << Quiz.WrongAnswers << endl;
+    cout << "-----------------------------------\n";
+}
+
 void StartGame() {
     char PlayAgain = 'y';
 
