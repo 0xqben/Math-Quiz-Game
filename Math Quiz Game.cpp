@@ -179,38 +179,35 @@ void PrintQuestionResult(stQuestion Question) {
     }
 }
 
-stQuizz FillGameResults(int NumberOfQuestions, stQuestion QuestionResults , int RightAnswers, int WrongAnswers) {
+stQuizz FillGameResults(int NumberOfQuestions, int RightAnswers, int WrongAnswers) {
     stQuizz QuizResults;
     QuizResults.NumberOfQuestions = NumberOfQuestions;
-    QuizResults.QuestionsLevel = QuestionResults.QuestionLevel;
-    QuizResults.OperationType = QuestionResults.OpType;
     QuizResults.RightAnswers = RightAnswers;
     QuizResults.WrongAnswers = WrongAnswers;
 
     return QuizResults;
 }
 
-stQuizz PlayGame(int NumberOfQuestions, enDifficulty QuestionsDiffculty, enOperationType OpType) {
+stQuizz PlayGame(int NumberOfQuestions ,enOperationType OpType ,enDifficulty QuestionsDiffculty) {
+    int RightAnswers = 0, WrongAnswers = 0;
     stQuestion Question;
-    int NumberOfRightAnswers = 0, NumberOfWrongAnswers = 0;
-
     for (int QuestionNumber = 1; QuestionNumber <= NumberOfQuestions; QuestionNumber++)
     {
+        
         cout << "\nQuestion [" << QuestionNumber << "/" << NumberOfQuestions << "]" << endl;
-        GenerateQuestion(OpType,QuestionsDiffculty);
+        Question.OpType = OpType;
+        Question.QuestionLevel = QuestionsDiffculty;
+        Question = GenerateQuestion(OpType,QuestionsDiffculty);
         Question.PlayerAnswer = ReadPlayerAnswer(Question);
 
         if (IsRightAnswer(Question))
-            NumberOfRightAnswers++;
+            RightAnswers++;
 
         else
-            NumberOfWrongAnswers++;
-
-
+            WrongAnswers++;
         PrintQuestionResult(Question);
     }
-
-    return; // FillGameResults();
+    return FillGameResults(NumberOfQuestions,RightAnswers , WrongAnswers);
 }
 
 void ResestScreen() {
@@ -225,12 +222,9 @@ void StartGame() {
     {
         ResestScreen();
         stQuizz Quiz;
-        Quiz.NumberOfQuestions = ReadNumberOfQuestions();
-        Quiz.OperationType;// = ReadOpertionType();
-        Quiz.QuestionsLevel;// = ReadQuestionLevel();
-        //Might change them and move them to playgame func
         
-        //PlayGame();
+        
+        Quiz; // CreateQuiz();
         //ShowPassFailScreen();
         //ShowGameResult();
 
@@ -244,8 +238,8 @@ void StartGame() {
 int main()
 {
     srand((unsigned)time(NULL));
-
-
+    StartGame();
+    
 }
 
 
