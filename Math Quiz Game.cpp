@@ -40,9 +40,10 @@ struct stQuestion
     enDifficulty QuestionLevel;
     enOperationType OpType;
     int Answer = 0;
-    int PlayerAnswer = -1;
+    int PlayerAnswer = 0;
     int Number1 = 0;
     int Number2 = 0;
+    bool AnswerResult = false;
 };
 
 string OperationType(enOperationType Type) {
