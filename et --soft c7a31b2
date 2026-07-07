@@ -1,0 +1,17 @@
+[33m3e12428[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mfeature/user-input-config[m[33m, [m[1;32mfeature/game-loop[m[33m)[m feat : add difficulty input function
+[33m000f7f3[m feat : implement question results print function
+[33m9eb94a4[m feat : add answer validation function
+[33m4895efc[m wip : set up function for [PlayGame]
+[33m5633e51[m refactor : move [ReadQuestionLevel] above [RandomNumber]
+[33m33186c8[m feat : add difficulty input function
+[33mc4a70ad[m wip : set up function structure for [StartGame]
+[33mffa9851[m feat : add resest screen function
+[33ma2c7bcc[m feat : add random number generator function
+[33m4ef8f9b[m fea : create ReadNumberOfQuestions function to get the info from user with needed validation
+[33m2f519c5[m feat : set initial stQuestion structure
+[33m162f5bf[m feat : set stQuizz structure and StartGame Initial Funciton
+[33m35388d6[m feat : set operation enum
+[33m849fe56[m feat : set diffculty enum
+[33m85600c7[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m, [m[1;32mmain[m[33m)[m Initial Commit
+[33md09b1d2[m Add project files.
+[33meca4e7b[m Add .gitattributes and .gitignore.
