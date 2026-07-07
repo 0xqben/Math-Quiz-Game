@@ -195,6 +195,13 @@ stQuizz FillGameResults(stQuizz QuizInfo, int RightAnswers, int WrongAnswers) {
     return QuizResults;
 }
 
+void GenerateQuizzQuestions(stQuizz& Quizz) {
+    for (int Question = 0; Question < Quizz.NumberOfQuestions; Question++)
+    {
+        Quizz.QuestionList[Question] = GenerateQuestion(Quizz.OperationType, Quizz.QuestionsLevel);
+    }
+}
+
 stQuizz PlayGame(stQuizz QuizInfo) {
     int RightAnswers = 0, WrongAnswers = 0;
     stQuestion Question;
@@ -242,6 +249,7 @@ void ShowPassFailScreen(stQuizz Quiz) {
 }
 
 
+
 void ShowGameResult(stQuizz Quiz) {
     cout << "Number of questions : " << Quiz.NumberOfQuestions << endl;
     cout << "Questions Level : " << QuestionLevel(Quiz.QuestionsLevel) << endl;
@@ -257,11 +265,13 @@ void PlayMathGame() {
     Quiz.QuestionsLevel = ReadQuestionsLevel();
     Quiz.OperationType = ReadOperationType();
 
+
+
     Quiz = PlayGame(Quiz);
     ShowPassFailScreen(Quiz);
     ShowGameResult(Quiz);
 }
-
+// New
 void StartGame() {
     char PlayAgain = 'y';
 
@@ -276,7 +286,7 @@ void StartGame() {
 
     } while (PlayAgain == 'y' || PlayAgain == 'Y');
 }
-
+// Refactored
 int main()
 {
     srand((unsigned)time(NULL));
