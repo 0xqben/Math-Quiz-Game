@@ -29,8 +29,15 @@ struct stQuizz
     int RightAnswers = 0;
     int WrongAnswers = 0;
     enOperationType OperationType;
-    enDifficulty QuestionLevel;
+    enDifficulty QuestionsLevel;
 
+};
+
+struct stQuestion
+{
+    enDifficulty QuestionLevel;
+    enOperationType OpType;
+    int Answer;
 };
 
 void StartGame() {
